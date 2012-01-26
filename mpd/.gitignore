@@ -1,0 +1,5 @@
+# Compiled Python Files #
+*.pyc
+
+# Datbase Files #
+*.db
