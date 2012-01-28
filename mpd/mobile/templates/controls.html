@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block head %}
+        <script src="/m/js/controls.js"></script>
+{% endblock %}
+
+{% block topbar %}
+<div id="topbar">
+    <a id="topright" class="rounded menu" href="{% url browse %}">Add Track</a>
+</div>    
+{% endblock %}
+
+{% block content %}
+<div id="content">
+    <div id="connection">Not Connected</div>
+	<div class="rounded box" style="height:180px;" id="status"></div>
+
+	
+    <div class="rounded toggle">Random<input type="checkbox" id="random"></div>
+    <div class="rounded toggle">Repeat<input type="checkbox" id="repeat"></div>
+	
+    <div class="rounded slider">Volume:<input id="volume" type="range" min="0" max="100" ></input></div>
+    
+    <div class="rounded menu" style="">Playlist<span id="playlist" style="float:right"></span></div>
+</div>
+<div id="bottombar">
+		<span id="prev" class="button">Prev</span>
+		<span id="play" class="button">Play</span>
+		<span id="next" class="button">Next</span>
+</div>
+{% endblock %}

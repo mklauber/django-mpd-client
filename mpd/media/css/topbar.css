@@ -1,0 +1,20 @@
+#topbar > * {
+	margin-top:2px;	
+	height:18px;
+	font-size: 15px;
+	display:inline-block;
+	min-height: 0px;	
+}
+
+#topbar .crumb, #topbar > .menu {
+	background: #4A42B7;
+	color:white;
+}
+
+#topbar .crumb {
+	padding-top: 2px;
+}
+
+#topbar > .menu {
+	padding: 3px 8px;
+}

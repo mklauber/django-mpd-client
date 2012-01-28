@@ -1,0 +1,89 @@
+* {
+	margin:0px;
+	padding:0px;
+}
+
+html {
+	background-color:#CDD5DF;
+}
+
+/* Main Page Sections */
+#topbar {
+    position: fixed;
+    top:0px;
+    height:32px;
+    width: 100%;
+    clear:both;
+    z-index:100;
+    
+    
+	/* Safari 4-5, Chrome 1-9 */
+	background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#8a82f7), to(#2F2727));
+
+	/* Safari 5.1, Chrome 10+ */
+	background: -webkit-gradient(linear,0% 0%,0% 100%,from(#CDD5DF),color-stop(3%,#B0BCCD),color-stop(50%,#889BB3),color-stop(51%,#8195AF),color-stop(97%,#6D84A2),to(#2D3642));
+
+	/* Firefox 3.6+ */
+	background: -moz-linear-gradient(top, #2F2727, #8a82f7);
+
+	/* IE 10 */
+	background: -ms-linear-gradient(top, #2F2727, #8a82f7);
+
+	/* Opera 11.10+ */
+	background: -o-linear-gradient(top, #2F2727, #8a82f7);
+}
+
+#topbar .button {
+	color:white;
+    border: solid 1px #555555;
+    background: -webkit-gradient(linear,0% 0%,0% 100%,from(#ADB5BF),color-stop(3%,#909CAD),color-stop(50%,#687B93),color-stop(51%,#61759F),color-stop(97%,#4D6492),to(#0D1622));
+
+}
+
+#content {
+    min-height: 360px;
+    height: 100%;
+    position:relative;
+    width:100%;
+    padding-top: 3px;
+}
+#content > * {
+	margin: 5px 10px;
+
+}
+
+
+#bottombar {
+    position:fixed;
+    bottom:0px;
+    height: 40px;
+    width: 100%;
+    background: #333333;
+    text-align:center;
+    display:table;
+}
+
+#bottombar * { 
+	color:white;
+	display:table-cell;
+	vertical-align: middle;
+}
+
+/* Other unique elements */
+#topright {
+    float:right;
+    margin-right: 5px;	
+}
+
+.oneLine {
+    white-space:nowrap;
+    overflow:hidden;    
+}
+
+
+
+
+
+
+
+
