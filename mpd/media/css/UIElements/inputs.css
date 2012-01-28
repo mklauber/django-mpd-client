@@ -1,0 +1,96 @@
+/* Radio buttons and checkboxes render the same, 
+   but have different javascript functionality.*/
+.radio, .check {
+	border: solid 2px #777777;
+}
+
+.radio > *, .check > * {
+	float:left;
+	height: 35px;
+	clear: both;
+	width:100%;
+	border-bottom:solid 1px #777777;
+}
+
+.radio > *:last-child, .check > *:last-child {
+	float:none;
+	clear:both;
+	border-bottom:none;
+	width:100%;	
+	display:block;
+}
+
+.radio > .checked, .check > .checked {
+	background: #6A90A9;
+}
+	
+.radio > *:hover, .check > *:hover {
+	background: #9AC0D9;
+}
+
+/* Toggle Switches, for simple boolean values,
+   toggles the checked class via javascript.*/
+.toggleSwitch {
+	width:94px;
+	height:27px;
+	background-position: 0 0px;
+	-webkit-appearance: none;
+	border-radius: 0px !important;
+}
+
+.toggle > .toggleSwitch {
+	float:right;
+	margin-top:4px;
+	margin-right: 5px;
+}
+
+.toggleSwitch.checked {
+	background:url("/m/img/toggleOn.png");
+}
+.toggleSwitch:not(.checked) {
+	background:url("/m/img/toggleOff.png");
+}
+
+.toggle {
+	font-size: 30px;
+}
+
+/* Text Fields */
+.text {
+}
+.text > label {
+
+}
+.text.rounded > label {
+	-moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+}
+.text >input[type=text] {
+	position:absolute;
+	right: 0px;
+	border-style:inset 1px #77777;
+	margin-right:5px;
+	font-size: 26px;
+	padding-left: 5px;
+}
+
+.text.rounded > input[type=text] {
+	-moz-border-radius: 8px;
+    -webkit-border-radius: 8px;
+    -khtml-border-radius: 8px;
+    border-radius: 8px;
+}
+
+/* Text Boxes */
+
+
+
+/* Input Sliders */
+.slider input[type=range] {
+	float:right;
+	margin-top:10px;
+	margin-right: 10px;
+}
+

@@ -1,0 +1,8 @@
+#Editor Backup files
+*.*~
+
+# Compiled Python Files #
+*.pyc
+
+# Datbase Files #
+*.db

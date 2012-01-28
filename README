@@ -1,0 +1,17 @@
+django-mpd-client
+
+A Basic client for controlling an MPD daemon through a django backed web interface.  Focus will be on devloping for a mobile platform first, while accessing the MPDClient through an ajax interface.
+
+Versions:
+
+ - Version 0.1:
+    - Implemented basic ajax views for getting status, and controlling MPD.
+       - Play
+       - Pause
+       - Previous
+       - Next
+       - Volume
+       - Random
+       - Repeat
+
+    - Implemented a Controls index page capable of accessing the ajax commands, and displaying the current track information.

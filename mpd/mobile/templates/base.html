@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+    <head>
+		<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
+		
+		<meta content="yes" name="apple-mobile-web-app-capable" />
+		<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+		<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
+
+
+        <!-- CSS Pages -->
+        <link rel="stylesheet" href="/m/css/UIElements/UIElements.css" type="text/css" />
+        <link rel="stylesheet" href="/m/css/site.css" type="text/css" />
+        <link rel="stylesheet" href="/m/css/topbar.css" type="text/css" />
+        
+
+        
+        <!-- Javascript -->
+        <script src="/m/js/jquery.js"></script>
+        <script src="/m/js/site.js"></script>
+        <script src="/m/js/UIElements.js"></script>
+
+        {% block head %}{% endblock %}
+    </head>
+    <body>
+        {% block topbar %}{% endblock %}
+        {% block content %}{% endblock %}
+    </body>
+</html>
