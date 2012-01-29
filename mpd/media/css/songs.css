@@ -21,11 +21,11 @@
     background-color: #000000;
 }
 
-#songs tr.hide {
+#songs tr:not(.show) {
     display:none;
 }
 
-#songs > tbody > tr:not(.hide):nth-child(odd) {
+#songs tr.odd {
     background-color: #222222;
 }
 

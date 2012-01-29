@@ -1,5 +1,7 @@
 $(document).ready( function() {
+    zebraRows('#songs > tbody tr', 'odd');
     connectEventHandlers();
+    $('#songs tr').addClass('show');  
     
 } );
 
@@ -32,17 +34,24 @@ function connectEventHandlers() {
     $('#filter').keyup( function() {
         if (event.keyCode == 27 || $(this).val() == '') {  
             //if esc is pressed we want to clear the value of search box  
-            $(this).val('');  
+            $(this).val('');
 
             //we want each row to be visible because if nothing  
             //is entered then all rows are matched.  
-            $('tbody tr').removeClass('hide');  
+            $('#songs tr').addClass('show');  
         }  
         query = $('#filter').val();
         
-        $('#songs tr:has(td)').each( function() {
-            $(this).text().search(new RegExp(query, "i")) < 0 ? $(this).addClass("hide") : $(this).removeClass("hide");
+        $('#songs > tbody tr:has(td)').each( function() {
+            $(this).text().search(new RegExp(query, "i")) < 0 ? $(this).removeClass("show") : $(this).addClass("show");
         } );
-        
+        $('#songs > tbody tr.show').removeClass('odd');  
+        zebraRows('#songs > tbody tr.show', 'odd');  
     } );
 }
+
+function zebraRows(selector, className)  
+{  
+    $(selector).removeClass(className);
+    $(selector+':even').addClass(className);  
+}  
