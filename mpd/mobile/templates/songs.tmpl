@@ -1,0 +1,16 @@
+<thead>
+    <tr>
+        <th></th>
+        <th>Title</th>
+        <th>Time</th>
+    </tr>
+</thead>
+<tbody>
+    {% for song in songs %}
+    <tr>
+        <td>{{ forloop.counter }}</td>
+        <td>{% firstof song.title song.filename song.file %}</td>
+        <td>{{ song.time }}</td>
+    </tr>
+    {% endfor %}
+</tbody>
