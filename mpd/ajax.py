@@ -1,9 +1,10 @@
 from django.conf import settings
 from django.http import HttpResponse, HttpResponseServerError
 from django.template import RequestContext
+from django.views.decorators.csrf import csrf_exempt
 from utilities.mpd import MPDClient
 from utilities.viewtools import as_json, using_mpd
-
+import json
 # Confiure Logging
 import logging
 logger = logging.getLogger(__name__)
@@ -78,3 +79,13 @@ def volume( request, volume ):
         volume = mpd.status()['volume']            
     return HttpResponse( "Volume: %s" % volume )
     
+# Playlist Controls
+@csrf_exempt
+@using_mpd
+def add_songs( request ):
+    post = request.POST
+    mpd = MPDClient()
+    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
+        for song in json.loads( post['songs'] ):
+            mpd.add(song)
+    return HttpResponse( "OK" )

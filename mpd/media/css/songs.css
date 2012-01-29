@@ -1,0 +1,23 @@
+
+.search{
+}
+#songs {
+    margin: 0px;
+    color:white;
+    width:100%; 
+    table-layout: fixed;
+}
+ 
+#songs tr {
+    background-color: #000000;
+}
+
+#songs > tbody > tr:nth-child(odd) {
+    background-color: #222222;
+}
+
+#songs td {
+    padding:8px 0px;
+    overflow: hidden;
+    white-space: nowrap;
+}

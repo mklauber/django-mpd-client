@@ -1,5 +1,10 @@
 {% extends 'base.html' %}
 
+{% block head %}
+<link rel="stylesheet" href="/m/css/songs.css" type="text/css" />
+<script src="/m/js/songs.js"></script>
+{% endblock %}
+
 {% block topbar %}
 <div id="topbar">
         {% include 'breadcrumbs.tmpl' %}
@@ -7,6 +12,7 @@
 {% endblock %}
 {% block content %}
 <div id="content">
+    <input type="text" id="search"></input>
     <table id="songs">
     {% include 'songs.tmpl' %}
     </table>
