@@ -12,7 +12,9 @@
 {% endblock %}
 {% block content %}
 <div id="content">
-    <input type="text" id="search"></input>
+    <div id="search">
+        <input id="filter" type="text" class="rounded"></input>
+    </div>
     <table id="songs">
     {% include 'songs.tmpl' %}
     </table>
