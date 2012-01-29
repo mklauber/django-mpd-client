@@ -3,6 +3,7 @@ from django.core.urlresolvers import reverse
 from django.template import RequestContext
 from os import path
 
+from utilities import formatTime
 from utilities.mpd import MPDClient, MPDError
 from utilities.viewtools import template_only
 
@@ -56,6 +57,7 @@ def songs( request, artist=None, album=None, *args, **keywords ):
         logger.debug( "Song: %s", c['songs'][0] )
     for song in c['songs']:
         song['filename'] = path.basename( song['file'] )
+        song['time'] = formatTime( song['time'] )
     return c
     
     
