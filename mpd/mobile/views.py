@@ -47,10 +47,12 @@ def songs( request, artist=None, album=None, *args, **keywords ):
             'target':reverse( 'album', kwargs={ 'album': album } ) 
         } )
     
+    # Choose our find query
     commands = []
     if artist: commands.extend(['artist', artist])
     if album:  commands.extend(['album', album]) 
     if not commands: commands.extend(['any', ''])
+    
     
     with MPDClient().connect("localhost", 6600) as mpd:
         c['songs'] = mpd.find( *commands )
