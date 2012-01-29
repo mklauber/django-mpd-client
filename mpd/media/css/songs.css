@@ -1,0 +1,36 @@
+
+#search{
+    display: block;
+    margin:3px 5px;
+    position: relative;
+    text-indent: 0px;
+}
+
+#search > input[type=text] {
+    width:100%;
+}
+
+#songs {
+    margin: 0px;
+    color:white;
+    width:100%; 
+    table-layout: fixed;
+}
+ 
+#songs tr {
+    background-color: #000000;
+}
+
+#songs tr:not(.show) {
+    display:none;
+}
+
+#songs tr.odd {
+    background-color: #222222;
+}
+
+#songs td {
+    padding:8px 0px;
+    overflow: hidden;
+    white-space: nowrap;
+}
