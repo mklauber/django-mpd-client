@@ -1,12 +1,8 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 
 {% block topbar %}
 <div id="topbar">
-    <ul id="breadcrumbs">
-        {% for crumb in breadcrumb %}
-            <li class="crumb"><a href="{{ crumb.target }}">{{ crumb.name }}</li>
-        {% endfor %}
-    </ul>
+        {% include 'breadcrumbs.tmpl' %}
 </div>    
 {% endblock %}
 {% block content %}

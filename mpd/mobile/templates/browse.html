@@ -12,11 +12,7 @@
 
 {% block content %}
     <div id="topbar">
-        <ul class="breadcrumbs">
-            {% for crumb in breadcrumbs %}
-                <li class="crumb"><a href="{{ crumb.target }}">{{ crumb.text }}</a></li>
-            {% endfor %}
-        </ul>
+        {% include 'breadcrumbs.tmpl' %}
     </div>    
     <div id="content">
         <a id="search" class="rounded menu" href="{% url search %}">
