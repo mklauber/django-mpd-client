@@ -12,9 +12,22 @@
 }
 
 #topbar .crumb {
-	padding-top: 2px;
+	font-size: 18px;
+	padding-top: 1px;
+	padding-bottom: 2px;
+}
+
+#topbar .breadcrumbs {
+	text-indent: 0px;
+	margin-left: 5px;
 }
 
 #topbar > .menu {
 	padding: 3px 8px;
+    display: inline-block;
+}
+
+#topbar a {
+    color:white;
+	text-decoration:none;
 }

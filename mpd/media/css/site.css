@@ -80,10 +80,9 @@ html {
     overflow:hidden;    
 }
 
-
-
-
-
+.right { 
+    float:right; 
+}
 
 
 

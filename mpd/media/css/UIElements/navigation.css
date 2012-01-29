@@ -1,10 +1,15 @@
 /* menu buttons */
 .menu {
 	font-size: 30px;
+	background-image:url('../../img/menu.png'); /**/
+    background-repeat:no-repeat;
+    background-position:right center;
+    padding-right: 40px;
+    display: block;
 }
 
 .menu:hover {
-	background: #9AC0D9;
+	background-color: #9AC0D9;
 }
 
 /* Breadcrumbs */
