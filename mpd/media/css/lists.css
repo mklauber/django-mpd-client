@@ -1,0 +1,38 @@
+#search{
+    display: block;
+    margin:3px 5px;
+    position: relative;
+    text-indent: 0px;
+}
+
+#search > input[type=text] {
+    width:100%;
+}
+
+#list {
+    width: 100%;
+    padding:0px;
+    margin:0px;
+}
+
+#list > li {
+    background-color:#333333;
+}
+
+#list > li > a {
+    display: block;
+    padding: 5px 0px;
+    color: white;
+    text-decoration: none;
+}
+
+
+#list li:not(.show) {
+    display:none;
+}
+
+#list > li.odd {
+    background-color:#000000;
+}
+
+
