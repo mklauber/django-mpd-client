@@ -3,7 +3,7 @@ from django.conf.urls.defaults import patterns, include, url
 from mpd.mobile import urls
 
 # Ajax Imports
-from ajax import add_songs, next, play, prev, repeat, random, status, stop, volume
+from ajax import add_songs, next, play, prev, remove_songs, repeat, random, status, stop, volume
 
 ajaxPatterns = patterns( '',
     url( r'status', status, name="ajaxStatus" ),
@@ -18,7 +18,8 @@ ajaxPatterns = patterns( '',
     url( r'random', random, name="ajaxRandom" ),
     url( r'volume/(?P<volume>\d{1,3})/', volume, name="ajaxVolume" ), 
     
-    url( r'add', add_songs, name="ajaxRepeat" ),
+    url( r'add', add_songs, name="playlistAdd" ),
+    url( r'remove', remove_songs, name="playlistRemove" ),
     
 )
 

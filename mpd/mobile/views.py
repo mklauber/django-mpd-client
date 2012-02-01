@@ -119,10 +119,25 @@ def albums( request, artist=None, *args, **keywords ):
         } )
     return c
 
+@template_only( 'playlist.html' )
+def current_playlist( request, *args, **keywords ):
+    c = RequestContext( request )
+    c['breadcrumbs'] = [ {'text': 'home', 'target':reverse('controls') } ]
+    
+    with MPDClient().connect('localhost', 6600) as mpd:
+        c['songs'] = mpd.playlistinfo()
+        
+    logger.debug( c['songs'] )
+    
+    #Cleanup song information
+    for song in c['songs']:
+        song['filename'] = path.basename( song['file'] )
+        song['time'] = formatTime( song['time'] )
+    return c
 
 
-
-
+def playlists( request, *args, **keywords ):
+    pass
 
 
 

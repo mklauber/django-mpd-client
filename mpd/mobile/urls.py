@@ -1,14 +1,17 @@
 from django.conf.urls.defaults import patterns, url, include
 
 # View imports
-from mobile.views import albums, artists, browse, controls, songs
+from mobile.views import albums, artists, browse, controls, current_playlist, playlists, songs
 
 urlPatterns = patterns( '',
 
     url( r'^$', controls, name="controls" ),
     url( r'^browse/$', browse, name="browse" ),
     url( r'^search/$', lambda x: x, name="search" ),
+
     # Playlists
+    url( r'playlist/$', current_playlist, name='playlist' ),
+    url( r'playlists/$', playlists, name='playlists' ),
 
     # Browse by artist
     url( r'browse/artists/$', artists, name="artists" ),
