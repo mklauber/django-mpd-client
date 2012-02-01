@@ -26,6 +26,11 @@
     text-decoration: none;
 }
 
+
+#list li:not(.show) {
+    display:none;
+}
+
 #list > li.odd {
     background-color:#000000;
 }
