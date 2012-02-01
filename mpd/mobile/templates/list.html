@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="/m/css/lists.css" type="text/css" />
+<script src="/m/js/lists.js"></script>
+{% endblock %}
+
+{% block topbar %}
+<div id="topbar">
+        {% include 'breadcrumbs.tmpl' %}
+</div>    
+{% endblock %}
+
+{% block content %}
+<div id="content">
+    <div id="search">
+        <input id="filter" type="text" class="rounded"></input>
+    </div>
+    <ul id="list">
+        {% for item in list %}
+            <li><a href="{{ item.target }}">{{ item.text }}</a></li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %}
