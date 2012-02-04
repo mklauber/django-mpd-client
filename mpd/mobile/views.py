@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 from django.template import RequestContext
 from os import path
 
@@ -136,11 +137,35 @@ def current_playlist( request, *args, **keywords ):
     return c
 
 
+@template_only( 'list.html' )
 def playlists( request, *args, **keywords ):
-    pass
+    c = RequestContext( request )
+    logger.info("playlists")
+        
+    c['breadcrumbs'] = [
+        {'text': 'home', 'target':reverse('controls') },
+        {'text': 'current playlist', 'target':reverse('playlist') },
+    ]
+    
+    with MPDClient().connect('localhost', 6600) as mpd:
+        data = mpd.listplaylists()
+    
+    logger.debug("Playlists: %s", data )
+    c['list'] = []
+    for item  in data:
+        pass
+        c['list'].append( { 
+            'text': item['playlist'], 
+            'target' : reverse( 'switch_playlist', kwargs={'playlist': item['playlist'] } )  
+        } )
+    return c
 
-
-
+def switch_playlist( request, playlist, *args, **keywords ):
+    
+    with MPDClient().connect('localhost', 6600) as mpd:
+        mpd.clear()
+        mpd.load( playlist )
+    return redirect('playlist') 
 
 
 

@@ -77,7 +77,7 @@ function connectEventHandlers() {
             type: 'POST',   //As a post request
             data: {"name": JSON.stringify( name )}, //Post the song list
             success: function() {
-                $('#name').text( name );
+            
             },
             error: function() {
                 //TODO Error handling here.

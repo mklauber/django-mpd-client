@@ -2,7 +2,7 @@ from django.conf.urls.defaults import patterns, url, include
 import os
 
 # View imports
-from mobile.views import albums, artists, browse, controls, current_playlist, playlists, songs
+from mobile.views import albums, artists, browse, controls, current_playlist, playlists, songs, switch_playlist
 
 urlPatterns = patterns( '',
 
@@ -13,6 +13,7 @@ urlPatterns = patterns( '',
     # Playlists
     url( r'playlist/$', current_playlist, name='playlist' ),
     url( r'playlists/$', playlists, name='playlists' ),
+    url( r'switch/(?P<playlist>.+)/$', switch_playlist, name="switch_playlist"),
 
     # Browse by artist
     url( r'browse/artists/$', artists, name="artists" ),
