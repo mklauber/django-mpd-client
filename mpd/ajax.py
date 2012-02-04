@@ -97,10 +97,28 @@ def remove_songs( request ):
     mpd = MPDClient()
     with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         for song in json.loads( post['songs'] ):
-            song = int(song) - 1
+            song = int(song)
             logger.info( "Deleting: %s", song )
-            mpd.delete( song )
+            mpd.deleteid( song )
     return HttpResponse( "OK" )
     
-    
+
+@csrf_exempt
+@using_mpd    
+def clear_songs( request ):
+    mpd = MPDClient()
+    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
+        mpd.clear()    
+    return HttpResponse( "OK" )
+
+@csrf_exempt
+@using_mpd    
+def save_playlist( request ):
+    name = request.POST['name']
+    mpd = MPDClient()
+    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
+        logger.debug( "Playlist Name: %s", name )
+        mpd.rm( name )
+        mpd.save( name )    
+    return HttpResponse( "OK" )
 

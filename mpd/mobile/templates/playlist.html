@@ -8,6 +8,8 @@
 {% block topbar %}
 <div id="topbar">
         {% include 'breadcrumbs.tmpl' %}
+        
+    <div id="name" style="color:white; font-size:20px;"></div>
     <a id="topright" class="rounded menu" href="{% url playlists %}">Playlists</a>
 </div>
 {% endblock %}
@@ -19,5 +21,10 @@
     <table id="songs">
     {% include 'songs.tmpl' %}
     </table>
+</div>
+
+<div id="bottombar">
+        <span id="clear" class="button">Clear</span>
+		<span id="save" class="button">Save</span>
 </div>
 {% endblock %}

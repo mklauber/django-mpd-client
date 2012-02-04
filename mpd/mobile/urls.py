@@ -1,4 +1,5 @@
 from django.conf.urls.defaults import patterns, url, include
+import os
 
 # View imports
 from mobile.views import albums, artists, browse, controls, current_playlist, playlists, songs
@@ -26,5 +27,7 @@ urlPatterns = patterns( '',
     # Browse all songs
     url( r'browse/songs/$', songs, name="songs"),
 
-    # Include the Ajax patterns
+    # Include the CSS/JS/Media Files
+   ( r'^m/(?P<path>.*)$', 'django.views.static.serve',
+         { 'document_root': os.path.join(os.getcwd(), 'mobile/media') } ),
 )

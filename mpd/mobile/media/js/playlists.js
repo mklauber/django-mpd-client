@@ -11,24 +11,20 @@ function connectEventHandlers() {
         var row = $(this)
         // Prevent accidental double clicks
         if( $(this).is(':animated') ) { return; }
-        // Show the highlight
-        $(this).fadeOut( callback=function() { 
-            $(this).remove();
-            $('#songs tr:has(td)').each( function(i, element) {
-                $(this).children().first().text(i+1);
-            } );
-            zebraRows('#songs > tbody tr', 'odd');
-            
-        } );
+        
         
         
         // Post the request
-        var POST = [ $(this).children().first().text() ];
+        var POST = [ $(this).children().first().attr('id') ];
         $.ajax( '/ajax/remove/', {
             type: 'POST',   //As a post request
             data: {"songs": JSON.stringify( POST )}, //Post the song list
             success: function() {
-                row.css('color', '#AAAAAA'); //If successful, change color of row
+                // Show the highlight
+                row.fadeOut( callback=function() { 
+                    row.remove();
+                    zebraRows('#songs > tbody tr', 'odd');                    
+                } );
             },
             error: function() {
                 //TODO Error handling here.
@@ -46,7 +42,7 @@ function connectEventHandlers() {
 
             //we want each row to be visible because if nothing  
             //is entered then all rows are matched.  
-            $('#songs tr').addClass('show');  
+            $('#songs tr').addClass('show');
         }  
         query = $('#filter').val();
         
@@ -55,6 +51,39 @@ function connectEventHandlers() {
         } );
         $('#songs > tbody tr.show').removeClass('odd');  
         zebraRows('#songs > tbody tr.show', 'odd');  
+    } );
+    
+    $('#clear').click( function() {
+        // Post the request
+        $.ajax( '/ajax/clear/', {
+            type: 'POST',   //As a post request
+            success: function() {
+                $('#songs > tbody tr').remove();
+            },
+            error: function() {
+                //TODO Error handling here.
+                //alert( "There was an error adding " + POST.length + " file(s) to the current playlist." );
+            }
+        } );
+    } );
+    
+    $('#save').click( function() {
+    
+        var name=prompt("Please enter your name","Harry Potter");
+        if ( name==null ) { return; }
+        if ( name=="" ) { alert( "Name cannot be blank" ); return; }
+        // Post the request
+        $.ajax( '/ajax/save/', {
+            type: 'POST',   //As a post request
+            data: {"name": JSON.stringify( name )}, //Post the song list
+            success: function() {
+                $('#name').text( name );
+            },
+            error: function() {
+                //TODO Error handling here.
+                //alert( "There was an error adding " + POST.length + " file(s) to the current playlist." );
+            }
+        } );
     } );
 }
 
