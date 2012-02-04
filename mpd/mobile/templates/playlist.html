@@ -2,13 +2,16 @@
 
 {% block head %}
 <link rel="stylesheet" href="/m/css/songs.css" type="text/css" />
-<script src="/m/js/songs.js"></script>
+<script src="/m/js/playlists.js"></script>
 {% endblock %}
 
 {% block topbar %}
 <div id="topbar">
         {% include 'breadcrumbs.tmpl' %}
-</div>    
+        
+    <div id="name" style="color:white; font-size:20px;"></div>
+    <a id="topright" class="rounded menu" href="{% url playlists %}">Playlists</a>
+</div>
 {% endblock %}
 {% block content %}
 <div id="content">
@@ -18,5 +21,11 @@
     <table id="songs">
     {% include 'songs.tmpl' %}
     </table>
+</div>
+
+<div id="bottombar">
+        <span id="clear" class="button">Clear</span>
+        <a href="{% url browse %}">Add</a>
+		<span id="save" class="button">Save</span>
 </div>
 {% endblock %}

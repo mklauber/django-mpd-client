@@ -50,11 +50,5 @@
 
 .box, .check, .menu, .radio, .slider, .text, .toggle {
 	border: solid 2px #777777;
-	background:white;
+	background-color:white;
 }
-
-
-	
-	
-	
-	

@@ -1,0 +1,5 @@
+<ul class="breadcrumbs">
+    {% for crumb in breadcrumbs %}
+        <li class="crumb"><a href="{{ crumb.target }}">{{ crumb.text }}</a></li>
+    {% endfor %}
+</ul>

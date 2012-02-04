@@ -1,17 +1,32 @@
-{% extends base.html %}
+{% extends 'base.html' %}
 
-{% block topbar %}
-<div id="topbar">
-    <ul id="breadcrumbs">
-        {% for crumb in breadcrumb %}
-            <li class="crumb"><a href="{{ crumb.target }}">{{ crumb.name }}</li>
-        {% endfor %}
-    </ul>
-</div>    
+{% block head %}
+<style>
+    .menu {
+        height:40px;
+        padding-top:5px
+    }
+    
+</style>
 {% endblock %}
+
 {% block content %}
-<div id="content">
-</div>
-<div id="bottombar">
-</div>
+    <div id="topbar">
+        {% include 'breadcrumbs.tmpl' %}
+    </div>    
+    <div id="content">
+        <a id="search" class="rounded menu" href="{% url search %}">
+            Search<span class="right">{{ num_songs }}</span>
+        </a>
+        <br />
+        <a id="artists" class="rounded menu" href="{% url artists %}">
+            Artists<span class="right">{{ num_artists }}</span>
+        </a>
+        <a id="albums" class="rounded menu" href="{% url albums %}">
+            Albums<span class="right">{{ num_albums }}</span>
+        </a>
+        <a id="songs" class="rounded menu" href="{% url songs %}">
+            Songs<span class="right">{{ num_songs }}</span>
+        </a>
+    </div>
 {% endblock %}
