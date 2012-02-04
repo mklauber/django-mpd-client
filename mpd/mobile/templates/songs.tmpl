@@ -8,7 +8,7 @@
 <tbody>
     {% for song in songs %}
     <tr id="{{ song.file }}">
-        <td>{{ forloop.counter }}</td>
+        <td id="{{ song.id }}">{{ forloop.counter }}</td>
         <td>{% firstof song.title song.filename song.file %}</td>
         <td>{{ song.time }}</td>
     </tr>

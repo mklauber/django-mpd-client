@@ -1,14 +1,19 @@
 from django.conf.urls.defaults import patterns, url, include
+import os
 
 # View imports
-from mobile.views import albums, artists, browse, controls, songs
+from mobile.views import albums, artists, browse, controls, current_playlist, playlists, songs, switch_playlist
 
 urlPatterns = patterns( '',
 
     url( r'^$', controls, name="controls" ),
     url( r'^browse/$', browse, name="browse" ),
     url( r'^search/$', lambda x: x, name="search" ),
+
     # Playlists
+    url( r'playlist/$', current_playlist, name='playlist' ),
+    url( r'playlists/$', playlists, name='playlists' ),
+    url( r'switch/(?P<playlist>.+)/$', switch_playlist, name="switch_playlist"),
 
     # Browse by artist
     url( r'browse/artists/$', artists, name="artists" ),
@@ -23,5 +28,7 @@ urlPatterns = patterns( '',
     # Browse all songs
     url( r'browse/songs/$', songs, name="songs"),
 
-    # Include the Ajax patterns
+    # Include the CSS/JS/Media Files
+   ( r'^m/(?P<path>.*)$', 'django.views.static.serve',
+         { 'document_root': os.path.join(os.getcwd(), 'mobile/media') } ),
 )

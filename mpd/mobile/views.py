@@ -1,5 +1,6 @@
 from django.conf import settings
 from django.core.urlresolvers import reverse
+from django.shortcuts import redirect
 from django.template import RequestContext
 from os import path
 
@@ -119,13 +120,52 @@ def albums( request, artist=None, *args, **keywords ):
         } )
     return c
 
+@template_only( 'playlist.html' )
+def current_playlist( request, *args, **keywords ):
+    c = RequestContext( request )
+    c['breadcrumbs'] = [ {'text': 'home', 'target':reverse('controls') } ]
+    
+    with MPDClient().connect('localhost', 6600) as mpd:
+        c['songs'] = mpd.playlistinfo()
+        
+    logger.debug( c['songs'] )
+    
+    #Cleanup song information
+    for song in c['songs']:
+        song['filename'] = path.basename( song['file'] )
+        song['time'] = formatTime( song['time'] )
+    return c
 
 
+@template_only( 'list.html' )
+def playlists( request, *args, **keywords ):
+    c = RequestContext( request )
+    logger.info("playlists")
+        
+    c['breadcrumbs'] = [
+        {'text': 'home', 'target':reverse('controls') },
+        {'text': 'current playlist', 'target':reverse('playlist') },
+    ]
+    
+    with MPDClient().connect('localhost', 6600) as mpd:
+        data = mpd.listplaylists()
+    
+    logger.debug("Playlists: %s", data )
+    c['list'] = []
+    for item  in data:
+        pass
+        c['list'].append( { 
+            'text': item['playlist'], 
+            'target' : reverse( 'switch_playlist', kwargs={'playlist': item['playlist'] } )  
+        } )
+    return c
 
-
-
-
-
+def switch_playlist( request, playlist, *args, **keywords ):
+    
+    with MPDClient().connect('localhost', 6600) as mpd:
+        mpd.clear()
+        mpd.load( playlist )
+    return redirect('playlist') 
 
 
 
