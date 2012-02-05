@@ -2,6 +2,9 @@ django-mpd-client
 
 A Basic client for controlling an MPD daemon through a django backed web interface.  Focus will be on devloping for a mobile platform first, while accessing the MPDClient through an ajax interface.
 
+Next Version:
+ - Determine and automate deployment process.
+
 Versions:
 
  - Version: 0.2
