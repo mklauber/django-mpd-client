@@ -3,14 +3,19 @@ django-mpd-client
 A Basic client for controlling an MPD daemon through a django backed web interface.  Focus will be on devloping for a mobile platform first, while accessing the MPDClient through an ajax interface.
 
 Next Version:
- - Determine and automate deployment process.
+ - Expand supported webservers.
+ - Develop apt-get and yum compatible packages.
 
 Versions:
- - Version: 0.2.1
+ - Version 0.3:
+   - Wrote apache conf file and wsgi script.
+   - Added basic installation instructions.
+
+ - Version: 0.2.1:
    - Fixed playlist such that clicking a link plays the song, as is intuitive.
    - Added delete button to playlists.
 
- - Version: 0.2
+ - Version: 0.2:
    - Add songs by artist, album, or search
    - remove songs from current playlist
    - Save and load playlists.
