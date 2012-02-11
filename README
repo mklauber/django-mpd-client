@@ -6,6 +6,9 @@ Next Version:
  - Determine and automate deployment process.
 
 Versions:
+ - Version: 0.2.1
+   - Fixed playlist such that clicking a link plays the song, as is intuitive.
+   - Added delete button to playlists.
 
  - Version: 0.2
    - Add songs by artist, album, or search
