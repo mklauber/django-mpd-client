@@ -6,33 +6,16 @@ $(document).ready( function() {
 } );
 
 function connectEventHandlers() {
+
     //Connect song table to ajax
     $('#songs tr:has(td)').click( function() {
-        var row = $(this)
-        // Prevent accidental double clicks
-        if( $(this).is(':animated') ) { return; }
-        
-        
-        
-        // Post the request
-        var POST = [ $(this).children().first().attr('id') ];
-        $.ajax( '/ajax/remove/', {
-            type: 'POST',   //As a post request
-            data: {"songs": JSON.stringify( POST )}, //Post the song list
-            success: function() {
-                // Show the highlight
-                row.fadeOut( callback=function() { 
-                    row.remove();
-                    zebraRows('#songs > tbody tr', 'odd');                    
-                } );
-            },
-            error: function() {
-                //TODO Error handling here.
-                //alert( "There was an error adding " + POST.length + " file(s) to the current playlist." );
-            }
-        } );
+        var song = $(this).children('td').first().attr('id');
+
+        $.get('/ajax/song/' + song + '/', 
+        success=function() {
+            window.location.href = '/'
+        } ); 
     } );
-    
     
     //Connect filter text box
     $('#filter').keyup( function() {

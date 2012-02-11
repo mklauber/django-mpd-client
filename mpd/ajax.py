@@ -52,6 +52,14 @@ def stop( request ):
         mpd.stop()
     return HttpResponse( "OK" )
 
+@using_mpd    
+def play_song( request, song_id ):
+    mpd = MPDClient()
+    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
+        logger.debug( "Song ID: %s", song_id )
+        mpd.play( song_id )  
+    return HttpResponse( "Playing Song %s." % song_id )
+
 # General Controls
 @using_mpd
 def repeat( request ):
