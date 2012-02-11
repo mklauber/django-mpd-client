@@ -19,7 +19,24 @@
         <input id="filter" type="text" class="rounded"></input>
     </div>
     <table id="songs">
-    {% include 'songs.tmpl' %}
+        <thead>
+            <tr>
+                <th style="width:50px;"></th>
+                <th>Title</th>
+                <th style="width:50px;">Time</th>
+                <th style="width:50px;"></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for song in songs %}
+            <tr id="{{ song.file }}">
+                <td id="{{ song.id }}">{{ forloop.counter }}</td>
+                <td>{% firstof song.title song.filename song.file %}</td>
+                <td>{{ song.time }}</td>
+                <td class="delete"><img src="/m/img/delete.png" /></td>
+            </tr>
+            {% endfor %}
+        </tbody>
     </table>
 </div>
 

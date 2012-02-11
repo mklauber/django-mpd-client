@@ -6,16 +6,24 @@ $(document).ready( function() {
 } );
 
 function connectEventHandlers() {
+
     //Connect song table to ajax
-    $('#songs tr:has(td)').click( function() {
-        var row = $(this)
-        // Prevent accidental double clicks
-        if( $(this).is(':animated') ) { return; }
-        
-        
-        
+    $('#songs tr >td:not(.delete)').click( function() {
+        var song = $(this).parent().children('td').first().attr('id');
+
+        $.get('/ajax/song/' + song + '/', 
+        success=function() {
+            window.location.href = '/'
+        } ); 
+    } );
+    
+    //Connect song table to ajax
+    $('td.delete').click( function() {
+        var row = $(this).parent();
+        var song = row.children('td').first().attr('id');
+
         // Post the request
-        var POST = [ $(this).children().first().attr('id') ];
+        var POST = [ row.children().first().attr('id') ];
         $.ajax( '/ajax/remove/', {
             type: 'POST',   //As a post request
             data: {"songs": JSON.stringify( POST )}, //Post the song list
@@ -28,11 +36,9 @@ function connectEventHandlers() {
             },
             error: function() {
                 //TODO Error handling here.
-                //alert( "There was an error adding " + POST.length + " file(s) to the current playlist." );
             }
         } );
     } );
-    
     
     //Connect filter text box
     $('#filter').keyup( function() {
