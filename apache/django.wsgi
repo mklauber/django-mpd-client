@@ -2,7 +2,7 @@ import os
 import sys
 
 # Place this project on the system path
-path = r'/var/www/mpd'
+path = r'/var/www/mpd/mpd'
 if path not in sys.path:
     sys.path.append(path)
 
