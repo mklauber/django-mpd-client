@@ -18,7 +18,10 @@ def status( request ):
             data = mpd.status()
             data.update( mpd.currentsong() )
             data.update( mpd.stats() )
-            return data
+        
+        if 'elapsed' not in data:
+            data['elapsed'] = data['time']    
+        return data
 
 
 # Playback Controls
