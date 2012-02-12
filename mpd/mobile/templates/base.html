@@ -4,9 +4,11 @@
 		<meta content="minimum-scale=1.0, width=device-width, maximum-scale=0.6667, user-scalable=no" name="viewport" />
 		
 		<meta content="yes" name="apple-mobile-web-app-capable" />
-		<link rel="apple-touch-icon" href="apple-touch-icon.png"/>
+		<link rel="apple-touch-icon" href="/m/img/apple-touch-icon.png"/>
 		<meta name="apple-mobile-web-app-status-bar-style" content="default"/>
-
+        
+        
+        <title>{% block title %}{% if title %} {{ title }} {% else %} MPD Client {% endif %}{% endblock %}</title>
 
         <!-- CSS Pages -->
         <link rel="stylesheet" href="/m/css/UIElements/UIElements.css" type="text/css" />
