@@ -68,13 +68,13 @@ function update() {
             }
             
             // Update Repeat
-            if( data['repeat']  == '0' )
+            if( data['repeat']  == '1' )
                 $('#repeat').addClass( 'checked' );
             else
                 $('#repeat').removeClass( 'checked' );
             
             // Update Random
-            if( data['random']  == '0')
+            if( data['random']  == '1')
                 $('#random').addClass( 'checked' );
             else
                 $('#random').removeClass( 'checked' );
