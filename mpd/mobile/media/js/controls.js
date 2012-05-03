@@ -101,6 +101,12 @@ function update() {
 
 //Convert a given number of seconds to a formatted time.  Does not handle hours.
 function toTime( seconds ) {
+	if( !isNumber( seconds ) )
+		return '0:00';
     var secs = Math.floor( seconds % 60 )
     return Math.floor( seconds / 60 ) + ':' + ( ( secs + "").length < 2 ? ('0' + secs ) : secs );
+}
+
+function isNumber( n ) {
+	return !isNaN( parseFloat( n ) ) && isFinite( n );
 }
