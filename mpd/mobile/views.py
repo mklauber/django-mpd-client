@@ -20,9 +20,7 @@ def controls( request ):
 @template_only( 'browse.html' )
 def browse( request, *args, **keywords ):
     c = RequestContext( request )
-    c['breadcrumbs'] = [
-        {'text': 'home', 'target':reverse( 'controls' ) }
-    ]
+    c['breadcrumbs'] = []
     with MPDClient().connect( "localhost", 6600 ) as mpd:
         stats = mpd.stats()
         c['num_songs'] = stats['songs']
@@ -37,7 +35,6 @@ def songs( request, artist=None, album=None, *args, **keywords ):
 
     commands = []
     c['breadcrumbs'] = [
-        { 'text': 'home', 'target': reverse( 'controls' ) },
         { 'text': 'browse', 'target': reverse( 'browse' ) },
     ]
     if artist:
@@ -77,7 +74,6 @@ def artists( request, *args, **keywords ):
     logger.info( "artists" )
 
     c['breadcrumbs'] = [
-        {'text': 'home', 'target':reverse( 'controls' ) },
         {'text': 'browse', 'target':reverse( 'browse' ) },
     ]
 
@@ -99,7 +95,6 @@ def albums( request, artist=None, *args, **keywords ):
     logger.info( "albums" )
 
     c['breadcrumbs'] = [
-        {'text': 'home', 'target':reverse( 'controls' ) },
         {'text': 'browse', 'target':reverse( 'browse' ) },
     ]
 
@@ -123,7 +118,6 @@ def albums( request, artist=None, *args, **keywords ):
 @template_only( 'playlist.html' )
 def current_playlist( request, *args, **keywords ):
     c = RequestContext( request )
-    c['breadcrumbs'] = [ {'text': 'home', 'target':reverse( 'controls' ) } ]
 
     with MPDClient().connect( 'localhost', 6600 ) as mpd:
         c['songs'] = mpd.playlistinfo()
@@ -143,7 +137,6 @@ def playlists( request, *args, **keywords ):
     logger.info( "playlists" )
 
     c['breadcrumbs'] = [
-        {'text': 'home', 'target':reverse( 'controls' ) },
         {'text': 'current playlist', 'target':reverse( 'playlist' ) },
     ]
 
