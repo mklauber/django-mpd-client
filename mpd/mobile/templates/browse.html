@@ -13,6 +13,8 @@
 {% block content %}
     <div id="topbar">
         {% include 'breadcrumbs.tmpl' %}
+        
+        <a id="topright" class="rounded menu" href="{% url ajaxUpdate %}">Add Track</a>
     </div>    
     <div id="content">
         <a id="search" class="rounded menu" href="{% url search %}">

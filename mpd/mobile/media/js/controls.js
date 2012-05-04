@@ -12,7 +12,16 @@ function connectEventHandlers() {
     
     //Playback Buttons
     $('#prev').click( function() { $.get('/ajax/prev/'); } );
-    $('#play').click( function() { $.get('/ajax/play/'); } );    
+    $('#play').click( function() { 
+    	$.get('/ajax/play/');
+        $('#pause').show(); 
+        $('#play').hide();
+    } );
+    $('#pause').click( function() {
+    	$.get('/ajax/play/');
+        $('#pause').hide(); 
+        $('#play').show();
+    } );        
     $('#next').click( function() { $.get('/ajax/next/'); } );
 
 
@@ -61,20 +70,20 @@ function update() {
             //Update pause/play
             if( data['state'] == 'play' ) {
                 $('#pause').show(); 
-                $('play').hide();
+                $('#play').hide();
             } else {
                 $('#pause').hide();
                 $('#play').show();
             }
             
             // Update Repeat
-            if( data['repeat']  == '0' )
+            if( data['repeat']  == '1' )
                 $('#repeat').addClass( 'checked' );
             else
                 $('#repeat').removeClass( 'checked' );
             
             // Update Random
-            if( data['random']  == '0')
+            if( data['random']  == '1')
                 $('#random').addClass( 'checked' );
             else
                 $('#random').removeClass( 'checked' );
@@ -101,6 +110,12 @@ function update() {
 
 //Convert a given number of seconds to a formatted time.  Does not handle hours.
 function toTime( seconds ) {
+	if( !isNumber( seconds ) )
+		return '0:00';
     var secs = Math.floor( seconds % 60 )
     return Math.floor( seconds / 60 ) + ':' + ( ( secs + "").length < 2 ? ('0' + secs ) : secs );
+}
+
+function isNumber( n ) {
+	return !isNaN( parseFloat( n ) ) && isFinite( n );
 }
