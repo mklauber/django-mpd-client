@@ -23,6 +23,7 @@
 	text-decoration:none;
     border: solid 2px #555555;
     border-left:none;
+    white-space:nowrap;
 }
 
 .breadcrumbs > .crumb:first-child {

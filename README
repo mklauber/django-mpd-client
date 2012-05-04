@@ -7,6 +7,13 @@ Next Version:
  - Develop apt-get and yum compatible packages.
 
 Versions:
+ - Version 0.4:
+   - Made a brief sidetrack to resolve a variety of display enhancements.
+   - Created and implemented icons instead of text for pause, play, etc.
+   - Resized delete button to reclaim screen real estate.
+   - fixed a bug where long artists and album titles would wrap around the page.
+   - Created a home icon for breadcrumbs.
+   - Resolved an issue that would cause times that could not be reported to render as NaN:NaN.
  - Version 0.3:
    - Wrote apache conf file and wsgi script.
    - Added basic installation instructions.
