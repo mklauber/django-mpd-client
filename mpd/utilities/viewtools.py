@@ -16,19 +16,20 @@ def as_json( function ):
     def outer( request, *args, **keywords ):
         data = function( request, *args, **keywords )
         # Pass any HttpResponses (server errors?) straight through.
-        if isinstance(data, HttpResponse):
+        if isinstance( data, HttpResponse ):
             return data
-        return HttpResponse( json.dumps( data ) )
+
+        return HttpResponse( json.dumps( data, sort_keys=True, indent=4 ) )
 
     return outer
 
 ## Wrap requests in error checking if we use the mpd client.
 # 
-def using_mpd( function):
+def using_mpd( function ):
     def outer( request, *args, **keywords ):
         try:
             return function( request, *args, **keywords )
-       
+
         except ConnectionError as e:
             logger.Error( "Lost connection to MPD Daemon" )
             logger.Exception( e )
