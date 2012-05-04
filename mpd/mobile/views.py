@@ -82,12 +82,12 @@ def artists( request, *args, **keywords ):
 
 
     c['list'] = []
-    for item in [d for d in data if d and '/' not in d ]:
+    for item in sorted( [d for d in data if d and '/' not in d ] ):
         c['list'].append( {
             'text': item,
             'target' : reverse( 'albums_by_artist', kwargs={'artist': item } )
         } )
-    return sorted( c )
+    return c
 
 @template_only( 'list.html' )
 def albums( request, artist=None, *args, **keywords ):
@@ -108,12 +108,12 @@ def albums( request, artist=None, *args, **keywords ):
 
 
     c['list'] = []
-    for item in [d for d in data if d and '/' not in d ]:
+    for item in sorted( [d for d in data if d and '/' not in d ] ):
         c['list'].append( {
             'text': item,
             'target' : reverse( 'songs_of_artist_album', kwargs={'album': item, 'artist': artist } ) if artist else reverse( 'album', kwargs={'album': item } )
         } )
-    return sorted( c )
+    return c
 
 @template_only( 'playlist.html' )
 def current_playlist( request, *args, **keywords ):
