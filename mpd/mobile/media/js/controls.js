@@ -12,7 +12,16 @@ function connectEventHandlers() {
     
     //Playback Buttons
     $('#prev').click( function() { $.get('/ajax/prev/'); } );
-    $('#play').click( function() { $.get('/ajax/play/'); } );    
+    $('#play').click( function() { 
+    	$.get('/ajax/play/');
+        $('#pause').show(); 
+        $('#play').hide();
+    } );
+    $('#pause').click( function() {
+    	$.get('/ajax/play/');
+        $('#pause').hide(); 
+        $('#play').show();
+    } );        
     $('#next').click( function() { $.get('/ajax/next/'); } );
 
 
@@ -61,7 +70,7 @@ function update() {
             //Update pause/play
             if( data['state'] == 'play' ) {
                 $('#pause').show(); 
-                $('play').hide();
+                $('#play').hide();
             } else {
                 $('#pause').hide();
                 $('#play').show();
