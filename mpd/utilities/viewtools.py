@@ -1,7 +1,11 @@
 from django.shortcuts import render_to_response
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseServerError
 from utilities.mpd import MPDError, ConnectionError
 import json
+
+import logging
+logger = logging.getLogger( __name__ )
+
 
 def template_only( template ):
     def decorator( function ):
@@ -29,14 +33,13 @@ def using_mpd( function ):
     def outer( request, *args, **keywords ):
         try:
             return function( request, *args, **keywords )
-
         except ConnectionError as e:
-            logger.Error( "Lost connection to MPD Daemon" )
-            logger.Exception( e )
+            logger.error( "Lost connection to MPD Daemon" )
+            logger.exception( e )
             return HttpResponseServerError( "Lost Connection to server." )
         except MPDError as e:
-            logger.Error( "An unknown error occurred" )
-            logger.Exception( e )
+            logger.error( "An unknown error occurred" )
+            logger.exception( e )
             return HttpResponseServerError( "And unknown error occurred." )
 
     return outer

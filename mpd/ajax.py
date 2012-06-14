@@ -7,20 +7,20 @@ from utilities.viewtools import as_json, using_mpd
 import json
 # Confiure Logging
 import logging
-logger = logging.getLogger(__name__)
+logger = logging.getLogger( __name__ )
 
 
 @as_json
 @using_mpd
 def status( request ):
         mpd = MPDClient()
-        with mpd.connect(settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
+        with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
             data = mpd.status()
             data.update( mpd.currentsong() )
             data.update( mpd.stats() )
-        
+
         if 'elapsed' not in data:
-            data['elapsed'] = data['time']    
+            data['elapsed'] = data['time']
         return data
 
 
@@ -29,7 +29,7 @@ def status( request ):
 def play( request ):
     mpd = MPDClient()
     with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
-        if mpd.status().get('state', None) == 'play':
+        if mpd.status().get( 'state', None ) == 'play':
             mpd.pause()
         else:
             mpd.play()
@@ -59,7 +59,7 @@ def stop( request ):
 @using_mpd
 def play_song( request, song_id ):
     mpd = MPDClient()
-    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
+    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         logger.debug( "Song ID: %s", song_id )
         mpd.playid( song_id )
     return HttpResponse( "Playing Song %s." % song_id )
@@ -87,7 +87,7 @@ def random( request ):
 def volume( request, volume ):
     mpd = MPDClient()
     with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
-        mpd.setvol(volume)
+        mpd.setvol( volume )
         volume = mpd.status()['volume']
     return HttpResponse( "Volume: %s" % volume )
 
@@ -99,7 +99,7 @@ def add_songs( request ):
     mpd = MPDClient()
     with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         for song in json.loads( post['songs'] ):
-            mpd.add(song)
+            mpd.add( song )
     return HttpResponse( "OK" )
 
 @csrf_exempt
@@ -109,7 +109,7 @@ def remove_songs( request ):
     mpd = MPDClient()
     with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         for song in json.loads( post['songs'] ):
-            song = int(song)
+            song = int( song )
             logger.info( "Deleting: %s", song )
             mpd.deleteid( song )
     return HttpResponse( "OK" )
@@ -119,7 +119,7 @@ def remove_songs( request ):
 @using_mpd
 def clear_songs( request ):
     mpd = MPDClient()
-    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
+    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         mpd.clear()
     return HttpResponse( "OK" )
 
@@ -128,9 +128,12 @@ def clear_songs( request ):
 def save_playlist( request ):
     name = request.POST['name']
     mpd = MPDClient()
-    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
+    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         logger.debug( "Playlist Name: %s", name )
-        mpd.rm( name )
+        try:
+            mpd.rm( name )
+        except:
+            pass
         mpd.save( name )
     return HttpResponse( "OK" )
 
@@ -138,7 +141,7 @@ def save_playlist( request ):
 @using_mpd
 def update_library( request ):
     mpd = MPDClient()
-    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
+    with mpd.connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         logger.info( "Updating library" )
-        mpd.update()    
+        mpd.update()
     return HttpResponse( "OK" )

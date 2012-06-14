@@ -75,7 +75,7 @@ function connectEventHandlers() {
     
     $('#save').click( function() {
     
-        var name=prompt("Please enter your name","Harry Potter");
+        var name=prompt("Please enter your name", "");
         if ( name==null ) { return; }
         if ( name=="" ) { alert( "Name cannot be blank" ); return; }
         // Post the request
