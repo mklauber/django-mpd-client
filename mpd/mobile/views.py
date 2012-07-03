@@ -7,7 +7,7 @@ from os import path
 from utilities import formatTime
 from utilities.mpd import MPDClient, MPDError
 from utilities.viewtools import template_only
-
+from django.conf import settings
 #Configure logging
 import logging
 logger = logging.getLogger( __name__ )
@@ -21,7 +21,7 @@ def controls( request ):
 def browse( request, *args, **keywords ):
     c = RequestContext( request )
     c['breadcrumbs'] = []
-    with MPDClient().connect( "localhost", 6600 ) as mpd:
+    with MPDClient().connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         stats = mpd.stats()
         c['num_songs'] = stats['songs']
         c['num_artists'] = stats['artists']
@@ -59,7 +59,7 @@ def songs( request, artist=None, album=None, *args, **keywords ):
         commands = ['any', '']
     logger.info( commands )
 
-    with MPDClient().connect( "localhost", 6600 ) as mpd:
+    with MPDClient().connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         c['songs'] = mpd.find( *commands )
 
     #Cleanup song information
@@ -77,7 +77,7 @@ def artists( request, *args, **keywords ):
         {'text': 'browse', 'target':reverse( 'browse' ) },
     ]
 
-    with MPDClient().connect( 'localhost', 6600 ) as mpd:
+    with MPDClient().connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         data = mpd.list( 'artist' )
 
 
@@ -103,7 +103,7 @@ def albums( request, artist=None, *args, **keywords ):
             {'text': 'artists', 'target': reverse( 'artists' ) }
         )
 
-    with MPDClient().connect( 'localhost', 6600 ) as mpd:
+    with MPDClient().connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         data = mpd.list( 'album', artist ) if artist else mpd.list( 'album' )
 
 
@@ -119,7 +119,7 @@ def albums( request, artist=None, *args, **keywords ):
 def current_playlist( request, *args, **keywords ):
     c = RequestContext( request )
 
-    with MPDClient().connect( 'localhost', 6600 ) as mpd:
+    with MPDClient().connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         c['songs'] = mpd.playlistinfo()
 
     logger.debug( c['songs'] )
@@ -140,7 +140,7 @@ def playlists( request, *args, **keywords ):
         {'text': 'current playlist', 'target':reverse( 'playlist' ) },
     ]
 
-    with MPDClient().connect( 'localhost', 6600 ) as mpd:
+    with MPDClient().connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         data = mpd.listplaylists()
 
     logger.debug( "Playlists: %s", data )
@@ -155,7 +155,7 @@ def playlists( request, *args, **keywords ):
 
 def switch_playlist( request, playlist, *args, **keywords ):
 
-    with MPDClient().connect( 'localhost', 6600 ) as mpd:
+    with MPDClient().connect( settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT ) as mpd:
         mpd.clear()
         mpd.load( playlist )
     return redirect( 'playlist' )
