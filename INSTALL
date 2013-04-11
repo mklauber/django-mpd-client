@@ -6,4 +6,4 @@ Apache mod_wsgi:
  - Extract package to /var/www/mpd/
  - move /var/www/mpd/apache/django-mpd-client.conf to apache's conf directory. [/etc/apache2/sites-available]
  - Enable the site ['sudo a2ensite django-mpd-client.conf']
- - Reload Apache ['sudo service apache reload']
+ - Reload Apache ['sudo service apache2 reload']
