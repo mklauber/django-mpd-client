@@ -1,5 +1,5 @@
 <ul class="breadcrumbs">
-	<a class="crumb" style="padding-top:0px;padding-bottom:0px;" href="{% url controls %}"><img src="/m/img/Home.png" height="18" /></a>
+	<a class="crumb" style="padding-top:0px;padding-bottom:0px;" href="{% url 'controls' %}"><img src="/m/img/Home.png" height="18" /></a>
     {% for crumb in breadcrumbs %}
         <a class="crumb" href="{{ crumb.target }}">{{ crumb.text }}</a>
     {% endfor %}

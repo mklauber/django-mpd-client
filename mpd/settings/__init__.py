@@ -140,10 +140,6 @@ LOGGING = {
         },
     },
     'handlers': {
-        'mail_admins': {
-            'level': 'ERROR',
-            'class': 'django.utils.log.AdminEmailHandler'
-        },
         'console': {
             'level': 'DEBUG',
             'class':'logging.StreamHandler',
@@ -151,11 +147,6 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django.request': {
-            'handlers': ['mail_admins'],
-            'level': 'ERROR',
-            'propagate': True,
-        },
         '': {
             'handlers': ['console'],
             'level': 'DEBUG' if DEBUG else 'INFO',
@@ -168,5 +159,5 @@ LOGGING = {
 ### MPD Specific Settings ###########################
 #####################################################
 
-MPD_CLIENT_HOST = '10.0.1.75'
+MPD_CLIENT_HOST = '127.0.0.1'
 MPD_CLIENT_PORT = 6600
