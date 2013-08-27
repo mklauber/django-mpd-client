@@ -1,6 +1,8 @@
 {% extends 'base.html' %}
 
 {% block head %}
+        <script src="/m/js/browse.js"></script>
+
 <style>
     .menu {
         height:40px;
@@ -14,20 +16,20 @@
     <div id="topbar">
         {% include 'breadcrumbs.tmpl' %}
         
-        <a id="topright" class="rounded menu" href="{% url ajaxUpdate %}">Add Track</a>
+		<span id="topright" class="rounded menu"><span id="update">Update Library</span></span>
     </div>    
     <div id="content">
-        <a id="search" class="rounded menu" href="{% url search %}">
-            Search<span class="right">{{ num_songs }}</span>
+        <a id="search" class="rounded menu" href="{% url 'search' %}">
+            Search<span id="search" class="right">{{ num_songs }}</span>
         </a>
         <br />
-        <a id="artists" class="rounded menu" href="{% url artists %}">
+        <a id="artists" class="rounded menu" href="{% url 'artists' %}">
             Artists<span class="right">{{ num_artists }}</span>
         </a>
-        <a id="albums" class="rounded menu" href="{% url albums %}">
+        <a id="albums" class="rounded menu" href="{% url 'albums' %}">
             Albums<span class="right">{{ num_albums }}</span>
         </a>
-        <a id="songs" class="rounded menu" href="{% url songs %}">
+        <a id="songs" class="rounded menu" href="{% url 'songs' %}">
             Songs<span class="right">{{ num_songs }}</span>
         </a>
     </div>

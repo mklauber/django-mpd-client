@@ -6,7 +6,7 @@
 
 {% block topbar %}
 <div id="topbar">
-    <a id="topright" class="rounded menu" href="{% url browse %}">Add Track</a>
+    <a id="topright" class="rounded menu" href="{% url 'browse' %}">Add Track</a>
 </div>    
 {% endblock %}
 
@@ -21,7 +21,7 @@
 	
     <div class="rounded slider">Volume:<input id="volume" type="range" min="0" max="100" ></input></div>
     
-    <a class="rounded menu" href="{% url playlist %}">Playlist<span id="playlist" style="float:right"></span></a>
+    <a class="rounded menu" href="{% url 'playlist' %}">Playlist<span id="playlist" style="float:right"></span></a>
 </div>
 <div id="bottombar">
 		<span id="prev" class="button"><span style="display:inline-block;"><img src="/m/img/previous.png" /></span></span>
