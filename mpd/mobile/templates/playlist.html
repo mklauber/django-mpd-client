@@ -10,9 +10,10 @@
         {% include 'breadcrumbs.tmpl' %}
         
     <div id="name" style="color:white; font-size:20px;"></div>
-    <a id="topright" class="rounded menu" href="{% url 'playlists' %}">Playlists</a>
+    <a id="topright" class="rounded menu" href="{% url 'browse' %}">Add</a>
 </div>
 {% endblock %}
+
 {% block content %}
 <div id="content">
     <div id="search">
@@ -42,7 +43,7 @@
 
 <div id="bottombar">
         <span id="clear" class="button">Clear</span>
-        <a href="{% url 'browse' %}">Add</a>
+        <a href="{% url 'playlists' %}">Playlists</a>
 		<span id="save" class="button">Save</span>
 </div>
 {% endblock %}
