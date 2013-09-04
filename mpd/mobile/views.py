@@ -127,7 +127,7 @@ def current_playlist( request, *args, **keywords ):
     #Cleanup song information
     for song in c['songs']:
         song['filename'] = path.basename( song['file'] )
-        song['time'] = formatTime( song['time'] )
+        song['time'] = formatTime( song.get('time', 0) )
     return c
 
 
