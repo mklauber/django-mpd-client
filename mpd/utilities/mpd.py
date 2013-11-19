@@ -26,20 +26,26 @@ NEXT = "list_OK"
 class MPDError(Exception):
     pass
 
+
 class ConnectionError(MPDError):
     pass
+
 
 class ProtocolError(MPDError):
     pass
 
+
 class CommandError(MPDError):
     pass
+
 
 class CommandListError(MPDError):
     pass
 
+
 class PendingCommandError(MPDError):
     pass
+
 
 class IteratingError(MPDError):
     pass
@@ -51,6 +57,7 @@ class _NotConnected(object):
 
     def _dummy(*args):
         raise ConnectionError("Not connected")
+
 
 class MPDClient(object):
     def __init__(self):
@@ -170,7 +177,7 @@ class MPDClient(object):
         if not self.connected:
             raise ConnectionError("Not connected")
         return self
-            
+
     def __exit__(self, exc_type, exc_val, exc_tb):
         self.disconnect()
 
@@ -211,8 +218,7 @@ class MPDClient(object):
         retval = self._commands[command]
         if self._command_list is not None:
             if not callable(retval):
-                raise CommandListError("'%s' not allowed in command list" %
-                                        command)
+                raise CommandListError("'%s' not allowed in command list" % command)
             self._write_command(command, args)
             self._command_list.append(retval)
         else:

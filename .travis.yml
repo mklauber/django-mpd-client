@@ -1,0 +1,18 @@
+language: python
+python:
+  - "2.6"
+  - "2.7"
+  - "3.2"
+  - "3.3"
+env:
+  - DJANGO=1.4
+  - DJANGO=1.5
+  - DJANGO=1.6
+install:
+  - pip install -q Django==$DJANGO --use-mirrors
+  - pip install -q -e .
+script:
+  - pep8 mpd/ --ignore=E501,E241,E128
+
+ 
+ 

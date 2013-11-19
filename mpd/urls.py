@@ -3,7 +3,9 @@ from django.conf.urls import patterns, include, url
 from mobile import urls
 
 # Ajax Imports
-from ajax import add_songs, clear_songs, next, play, play_song, prev, remove_songs, repeat, random, save_playlist, status, stop, update_library, volume
+from ajax import add_songs, clear_songs, next, play, play_song, prev, \
+    remove_songs, repeat, random, save_playlist, status, stop, \
+    update_library, volume
 
 ajaxPatterns = patterns('',
     url(r'status', status, name="ajaxStatus"),
@@ -35,6 +37,6 @@ urlpatterns = patterns('',
     url(r'ajax/', include(ajaxPatterns)),
 
 
-     (r'^m/(?P<path>.*)$', 'django.views.static.serve',
-         { 'document_root': settings.MEDIA_ROOT }),
+    (r'^m/(?P<path>.*)$', 'django.views.static.serve',
+        {'document_root': settings.MEDIA_ROOT}),
 )
