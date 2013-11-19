@@ -9,6 +9,7 @@ env:
   - DJANGO=1.5
   - DJANGO=1.6
 install:
+  - pip install pep8 --use-mirrors
   - pip install -q Django==$DJANGO --use-mirrors
 script:
   - pep8 mpd/ --ignore=E501,E241,E128
