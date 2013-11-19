@@ -6,4 +6,5 @@ Apache mod_wsgi:
  - Extract package to /var/www/mpd/
  - move /var/www/mpd/apache/django-mpd-client.conf to apache's conf directory. [/etc/apache2/sites-available]
  - Enable the site ['sudo a2ensite django-mpd-client.conf']
+   - If you are working from a fresh installation of django, you may need to run ['sudo a2dissite default'] to disable the apache "It Works" site.
  - Reload Apache ['sudo service apache2 reload']
