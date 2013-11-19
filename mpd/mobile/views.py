@@ -75,7 +75,7 @@ def artists(request, *args, **keywords):
     c = RequestContext(request)
     logger.info("artists")
 
-    c['breadcrumbs'] = [{'text': 'browse', 'target':reverse('browse')}]
+    c['breadcrumbs'] = [{'text': 'browse', 'target': reverse('browse')}]
 
     with MPDClient().connect(settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
         data = mpd.list('artist')
@@ -94,7 +94,7 @@ def albums(request, artist=None, *args, **keywords):
     c = RequestContext(request)
     logger.info("albums")
 
-    c['breadcrumbs'] = [{'text': 'browse', 'target':reverse('browse')}]
+    c['breadcrumbs'] = [{'text': 'browse', 'target': reverse('browse')}]
 
     if artist:
         c['breadcrumbs'].append(
@@ -135,7 +135,7 @@ def playlists(request, *args, **keywords):
     c = RequestContext(request)
     logger.info("playlists")
 
-    c['breadcrumbs'] = [{'text': 'current playlist', 'target':reverse('playlist')}]
+    c['breadcrumbs'] = [{'text': 'current playlist', 'target': reverse('playlist')}]
 
     with MPDClient().connect(settings.MPD_CLIENT_HOST, settings.MPD_CLIENT_PORT) as mpd:
         data = mpd.listplaylists()
